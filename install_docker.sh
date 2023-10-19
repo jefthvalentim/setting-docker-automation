@@ -35,10 +35,10 @@ docker --version
 docker info
 
 # Display Docker Compose version
-docker-compose --version
+#docker-compose --version
 
 # Display Docker Compose info
-docker-compose version
+#docker-compose version
 
 # Display a message indicating successful installation
 echo "Docker has been successfully installed and configured. Please log out and log back in to apply group changes."
