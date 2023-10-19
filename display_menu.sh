@@ -4,7 +4,7 @@ chmod +x setting_docker.sh
 # Function to display the menu
 display_menu() {
     echo "Escolha uma operação:"
-    echo "0. Executar configurações"
+    #echo "0. Executar configurações"
     echo "1. Instalar Docker"
     echo "2. Instalar Docker Compose"
     echo "3. Instalar Portainer"
