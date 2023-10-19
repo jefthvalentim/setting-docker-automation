@@ -6,7 +6,7 @@ display_menu() {
     echo "Escolha uma operação:"
     echo "1. Listar containers"
     echo "2. Executar container"
-    echo "3. Para um container"
+    echo "3. Parar um container"
     echo "4. Eliminar um container"
     echo "5. Menu principal"
 }
@@ -46,13 +46,14 @@ delete_container() {
     local container_id=$id
 
     if [ -z "$container_id" ]; then
-        echo "Por favor, forneça o ID ou o nome da imagem a ser excluída."
+        echo "Por favor, forneça o ID ou o nome do container a ser excluído."
         exit 1
     fi
 
+    docker stop "$container_id"
     docker rm "$container_id"
     if [ $? -eq 0 ]; then
-        echo "Container $container_id excluído com sucesso."
+        echo -e "Container $container_id excluído com sucesso.\n"
     else
         echo "Falha ao excluir o container $container_id."
         echo -e "\n"
@@ -70,11 +71,15 @@ run_container() {
     read -p "Nome para o container: " container
     local container_name=$container
     
-    read -p "Nome da imagem: " port
+    read -p "Porta: " port
     local port=$port
+    
+    read -p "Insira o domínio (opcional): " domain
+    local domain=$domain
 
     docker run -d --name "$container_name" -p "$port:80" "$image_name"
-    echo -e "\n"
+    
+    echo -e "Operação terminada, acesse $domain para aceder ao serviço.\n"
     
 }
 
